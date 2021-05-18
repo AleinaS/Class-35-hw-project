@@ -18,7 +18,7 @@ function setup() {
   balloon=createSprite(250,450,150,150);
   balloon.addAnimation("hotAirBalloon",balloonImage1);
   balloon.scale=0.5;
-  balloonPosition=database.ref("balloon/position");
+  balloonPosition=database.ref("balloon/height");
   balloonPosition.on("value",readHeight);
 
   textSize(20); 
@@ -27,17 +27,17 @@ function setup() {
 // function to display UI
 function draw() {
   background(bg);
-  if(position!==undefined){
+  
 
   if(keyDown(LEFT_ARROW)){
-    writePosition(-1,0)
+    updateHeight(-10,0)
     balloon.addAnimation("hotAirBalloon",balloonImage2);
     
     //write code to move air balloon in left direction
   }
   else if(keyDown(RIGHT_ARROW)){
     balloon.addAnimation("hotAirBalloon",balloonImage2);
-    writePosition(1,0);
+    updateHeight(10,0);
     //write code to move air balloon in right direction
   }
   else if(keyDown(UP_ARROW)){
@@ -52,7 +52,7 @@ function draw() {
     balloon.scale=balloon.scale+0.01;
    
     //write code to move air balloon in down direction
-  }}
+  }
 
   drawSprites();
   fill(0);
